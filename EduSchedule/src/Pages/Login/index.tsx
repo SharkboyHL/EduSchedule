@@ -1,11 +1,18 @@
-import { Link } from "react-router-dom";
+import React from 'react';
+import LoginForm from '../../Components/Logar/index';
 
-export function Login(){
-    return(
-        <div>
-            <h1>Bem vindo!</h1>
-            <span>Primeira página com navegação</span>
-            <br />
-        </div>
-    )
-}
+const LoginPage: React.FC = () => {
+  const handleLogin = () => {
+    // Implemente qualquer lógica adicional após o login, se necessário
+    console.log('Usuário logado com sucesso!');
+  };
+
+  return (
+    <div>
+      <h1>Página de Login</h1>
+      <LoginForm onLogin={handleLogin} />
+    </div>
+  );
+};
+
+export default LoginPage;
