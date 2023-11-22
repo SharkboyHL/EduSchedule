@@ -2,9 +2,9 @@ import React from 'react';
 import RegistrationForm from '../../Components/Registrar/index';
 
 const RegistrationPage: React.FC = () => {
-  const handleRegister = (email: string, password: string) => {
+  const handleRegister = () => {
     // Adicione a lógica para registrar o usuário no Firebase aqui
-    console.log(`Registrando usuário com email: ${email} e senha: ${password}`);
+    console.log('Usuário registrado com sucesso');
   };
 
   return (

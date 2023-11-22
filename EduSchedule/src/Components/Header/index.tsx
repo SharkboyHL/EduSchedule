@@ -7,7 +7,7 @@ export function Header(){
             <h2>EduSchedule</h2>
             <div>
                 <Link to="/">Login</Link>
-                <Link to="/Sobre">Sobre</Link>
+                <Link to="/cadastro">Cadastro</Link>
                 <Link to="/contato">Contato</Link>
             </div>
         </header>

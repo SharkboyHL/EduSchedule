@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import { createUserWithEmailAndPassword, Auth, updateProfile } from 'firebase/auth';
+import { doc, setDoc, Firestore } from 'firebase/firestore';
+import { auth, db } from '../../Services/firebaseConnection'
 
 interface RegistrationFormProps {
-    onRegister: (email: string, password: string) => void;
+    onRegister: () => void;
 }
 
 const RegistrationForm: React.FC<RegistrationFormProps> = ({ onRegister }) => {
@@ -16,9 +19,25 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ onRegister }) => {
         setPassword(e.target.value);
     };
 
-    const handleRegister = () => {
-        // Adicione validação ou chamada para o Firebase aqui
-        onRegister(email, password);
+    const handleRegister = async () => {
+        try {
+            //Criar usuário no Firebase Authentication
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            
+            //Atualizar o perfil do usuário com um nome (opcional)
+            await updateProfile(userCredential.user, { displayName: 'Novo usuário' });
+
+            //Adicionar informações adicionais ao Firestore
+            const userDocRef = doc(db, 'users', userCredential.user.uid);
+            await setDoc(userDocRef, {
+                email: userCredential.user.email,
+                displayName: userCredential.user.displayName,
+            })
+
+            onRegister();
+        } catch (error) {
+            console.error('Erro no registro:', error.message);
+        }
     };
 
     return (

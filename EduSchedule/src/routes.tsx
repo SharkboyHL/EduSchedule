@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 
 //Importação dos arquivos das páginas
 import { Login } from "./Pages/Login/index";
-import { Cadastro } from "./Pages/Cadastro/index"
+import Cadastro from "./Pages/Cadastro/index"
 import { NotFound } from "./Pages/NotFound/index";
 
 import { Layout } from "./Components/Layout";
@@ -27,4 +27,4 @@ const router = createBrowserRouter([
     }
 ])
 
-export{router};
+export { router };
