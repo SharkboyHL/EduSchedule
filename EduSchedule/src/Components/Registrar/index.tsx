@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { createUserWithEmailAndPassword, Auth, updateProfile } from 'firebase/auth';
 import { doc, setDoc, Firestore } from 'firebase/firestore';
 import { auth, db } from '../../Services/firebaseConnection'
+import { useNavigate } from 'react-router-dom';
 
 interface RegistrationFormProps {
     onRegister: () => void;
@@ -10,6 +11,7 @@ interface RegistrationFormProps {
 const RegistrationForm: React.FC<RegistrationFormProps> = ({ onRegister }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value);
@@ -26,6 +28,7 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ onRegister }) => {
             
             //Atualizar o perfil do usuário com um nome (opcional)
             await updateProfile(userCredential.user, { displayName: 'Novo usuário' });
+            navigate('/');
 
             //Adicionar informações adicionais ao Firestore
             const userDocRef = doc(db, 'users', userCredential.user.uid);

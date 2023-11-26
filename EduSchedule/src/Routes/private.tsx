@@ -1,5 +1,5 @@
 import { ReactNode, useState, useEffect } from 'react'
-import { auth } from '../../Services/firebaseConnection'
+import { auth } from '../Services/firebaseConnection'
 import { onAuthStateChanged } from 'firebase/auth'
 import { Navigate } from 'react-router-dom'
 
@@ -19,7 +19,7 @@ export function Private({children}: PrivateProps): any{
                     uid:user?.uid,
                     email:user?.email
                 }
-                localStorage.setItem("@reactLinks", JSON.stringify(userData))
+                localStorage.setItem("@EduSchedule", JSON.stringify(userData))
                 setLoading(false);
                 setSigned(true);
 
@@ -37,7 +37,7 @@ export function Private({children}: PrivateProps): any{
         return<div><h1>Carregando...</h1></div>
     }
     if(!signed){
-        return <Navigate to="/login"/>
+        return <Navigate to="/"/>
     }
 
 
