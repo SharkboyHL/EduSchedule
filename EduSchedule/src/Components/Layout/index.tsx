@@ -7,9 +7,6 @@ export function Layout(){
             <Header/>
             <Outlet/>
             <br />
-            <footer>
-                <span>Rodapé da Página</span>
-            </footer>
         </>
     )
 }

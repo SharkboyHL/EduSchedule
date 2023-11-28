@@ -1,8 +1,9 @@
 import React from 'react';
+import TodoList from '../../Components/TodoList/index'
 
 export function Teste(){
     return(
-        <div><h1>OLÁÁÁ</h1></div>
+        <div><TodoList /></div>
     )
 }
 
