@@ -42,14 +42,13 @@ div.mae {
 div .tituloForm{
   display: grid;
   grid-template-columns: 500px 200px 200px;
-  
 }
 
 h2 {
   font-size: 1.8rem;
   margin-bottom: 20px;
   align-items: center;
-  justify-content: center;
+  justify-content: center ;
   color: #0c2461;
 }
 
@@ -61,6 +60,7 @@ form {
 input[type="text"] {
   margin-bottom: 10px;
   padding: 12px;
+  padding-right: 390px;
   font-size: 1rem;
   border: 1px solid #ddd;
   border-radius: 4px;

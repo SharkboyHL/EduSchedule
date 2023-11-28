@@ -121,11 +121,11 @@ const TodoForm: React.FC<TodoFormProps> = ({ onSubmit }) => {
       </div>
       <form onSubmit={handleTarefa}>
         <div>
-          <label>Nome da Tarefa</label>
+          <label>Nome da Tarefa:</label>
           <input type="text" value={nome} onChange={handleNomeChange} />
         </div>
         <div>
-          <label>Descrição da Tarefa</label>
+          <label>Descrição da Tarefa:</label>
           <input type="text" value={descricao} onChange={handleDescricaoChange} />
         </div>
         <button type="submit">
