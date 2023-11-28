@@ -115,7 +115,10 @@ const TodoForm: React.FC<TodoFormProps> = ({ onSubmit }) => {
 
   return (
     <div className="mae" style={{ maxWidth: '600px', margin: '0 auto' }}>
-      <h2>To Do List</h2>
+      <div className='tituloForm'>
+        <h2>To Do List</h2>
+        <img src="../../../src/assets/logo-eduS.png" alt="logo-eduS" style={{ width: '90px', height: '90px' }} />
+      </div>
       <form onSubmit={handleTarefa}>
         <div>
           <label>Nome da Tarefa</label>
