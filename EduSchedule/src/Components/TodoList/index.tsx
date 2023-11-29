@@ -169,7 +169,7 @@ const TodoForm: React.FC<TodoFormProps> = ({ onSubmit }) => {
                   </span>
                 </div>
                 <div className="edit-buttons">
-                  <button onClick={() => handleEdit(task.id)} className={task.feita ? 'feito' : 'pendente'}>
+                  <button onClick={() => handleEdit(task.id)} className={`edit ${task.feita ? 'feito' : 'pendente'}`}>
                     <img src="../../../src/assets/lapis.png" alt="Editar" style={{ width: '30px', height: '30px' }}/>
                   </button>
 
