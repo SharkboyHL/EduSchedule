@@ -144,7 +144,7 @@ const TodoForm: React.FC<TodoFormProps> = ({ onSubmit }) => {
             />
             {editingTask === task.id ? (
               <div>
-                <label>Nome da Tarefa</label>
+                <label>Nome da Tarefa:</label>
                 <input
                   type="text"
                   value={nome}
@@ -152,7 +152,7 @@ const TodoForm: React.FC<TodoFormProps> = ({ onSubmit }) => {
                   className="edit-input"
                 />
                 <br />
-                <label>Descrição da Tarefa</label>
+                <label>Descrição da Tarefa:</label>
                 <input
                   type="text"
                   value={descricao}
@@ -164,14 +164,17 @@ const TodoForm: React.FC<TodoFormProps> = ({ onSubmit }) => {
               <>
                 <div>
                   <strong>{task.nome}</strong> - {task.descricao} -{' '}
-                  {task.feita ? 'Feita' : 'Pendente'}
+                  <span className={task.feita ? 'feito' : 'pendente'}>
+                    {task.feita ? 'Feito' : 'Pendente'}
+                  </span>
                 </div>
                 <div className="edit-buttons">
-                  <button onClick={() => handleEdit(task.id)}>
-                    <img src="../../../src/assets/lapis.png" alt="Editar" style={{ width: '30px', height: '30px' }} />
+                  <button onClick={() => handleEdit(task.id)} className={task.feita ? 'feito' : 'pendente'}>
+                    <img src="../../../src/assets/lapis.png" alt="Editar" style={{ width: '30px', height: '30px' }}/>
                   </button>
-                  <button className="delete" onClick={() => handleDelete(task.id)}>
-                    <img src="../../../src/assets/lixeira.png" alt="Excluir" style={{ width: '30px', height: '30px' }} />
+
+                  <button className={`delete ${task.feita ? 'feito' : 'pendente'}`} onClick={() => handleDelete(task.id)}>
+                    <img src="../../../src/assets/lixeira.png" alt="Excluir" style={{ width: '30px', height: '30px' }}/>
                   </button>
                 </div>
               </>
@@ -180,7 +183,9 @@ const TodoForm: React.FC<TodoFormProps> = ({ onSubmit }) => {
         ))}
       </ul>
       <div>
-        <a href="/">Sair</a>
+        <a href="/">
+          <img src="../../../src/assets/sair.png" alt="sair" style={{ width: '40px', height: '40px' }}/>
+        </a>
       </div>
     </div>
   );
