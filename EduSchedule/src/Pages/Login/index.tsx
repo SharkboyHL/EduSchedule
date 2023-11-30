@@ -9,7 +9,6 @@ const LoginPage: React.FC = () => {
 
   return (
     <div>
-      <h1>Página de Login</h1>
       <LoginForm onLogin={handleLogin} />
     </div>
   );

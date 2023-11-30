@@ -32,8 +32,11 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
+    <div className="mae-login">
+      <div className="titulo-login">
+        <h2>Login</h2>
+        <img src="../../src/assets/logo-eduS.png" alt="logo" style={{ width: '90px', height: '90px' }} />
+      </div>
       <form>
         <div>
           <label>Email:</label>
@@ -46,6 +49,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
         <button type="button" onClick={handleLogin}>
           Entrar
         </button>
+        <a className="link-cadastro" href="/cadastro">Não possui cadastro ? Clique aqui e cadastra-se</a>
       </form>
     </div>
   );
