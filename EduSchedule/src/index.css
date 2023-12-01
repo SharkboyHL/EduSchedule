@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&display=swap');
 
 body {
   background: rgb(106, 137, 204);
@@ -15,7 +16,7 @@ div.mae {
   max-width: 100%;
   margin: 0 auto;
   padding: 1em;
-  background-color: #ebeff5;
+  background-color: #ebeff5; 
   border: 4px solid #0c2461;
   box-shadow: rgba(12,36,97,1) -5px 5px, rgba(30,55,153,1) -10px 10px, rgba(74,105,189,1) -15px 15px, rgba(106,137,204,1) -20px 20px;
   border-radius: 10px;
@@ -234,21 +235,70 @@ div .mae-login{
 
 div .titulo-login{
   display: grid;
-  grid-template-columns: 335px auto;
+  grid-template-columns: 445px auto;
 }
 
-input[type=email], input[type=password]{
-  font-family: 'Bungee', sans-serif;
+label{
+  margin-left: 15px;
+}
+
+input[type=email], input[type=password], input[type=text]{
+  font-family: 'Josefin Sans', sans-serif;
   margin-bottom: 10px;
   margin-left: 8px;
-  padding: 10px auto;
+  padding: 100px auto;
   padding-right: 80px;
-  font-size: 1rem;
+  font-size: 1.5rem;
   border: 1px solid #ddd;
   border-radius: 4px;
+}
+
+#cadastro-input-email{
+  margin-left: 30px;
+}
+
+#cadastro-input-senha{
+  margin-left: 30px;
+}
+
+.input-login-senha{
+  margin-left: 14px;
 }
 
 .link-cadastro{
   color: #0c2461;
   margin-top: 2em;
+  margin-left: 35px;
+}
+
+/* CSS CADASTRO */
+
+div .mae-cadastro{
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 3em;
+  background-color: #ebeff5;
+  border: 4px solid #0c2461;
+  box-shadow: rgba(12,36,97,1) -5px 5px, rgba(30,55,153,1) -10px 10px, rgba(74,105,189,1) -15px 15px, rgba(106,137,204,1) -20px 20px;
+  border-radius: 10px;
+  width: fit-content;
+}
+
+div .titulo-cadastro{
+  display: grid;
+  grid-template-columns: 335px auto;
+}
+
+div .lirio-do-campo input{
+  margin-left: 30px;
+}
+
+input{
+  border: 5px solid red;
+}
+
+svg{
+  margin-left: 5px;
+  height: 20px;
+  width: 20px;
 }

@@ -1,20 +1,20 @@
-// src/components/LoginForm.tsx
 import React, { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../Services/firebaseConnection'; // Importe sua instância do Firebase
+import { auth, db } from '../../Services/firebaseConnection';
 import { useNavigate } from 'react-router-dom';
+import { collection, query, where, getDocs } from 'firebase/firestore';
 
 interface LoginFormProps {
   onLogin: () => void;
 }
 
 const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
-  const [email, setEmail] = useState('');
+  const [identifier, setIdentifier] = useState(''); // Pode ser um email ou nickname
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
+  const handleIdentifierChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIdentifier(e.target.value);
   };
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,9 +23,33 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
 
   const handleLogin = async () => {
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      // Verificar se o identificador parece ser um email
+      const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(identifier);
+
+      let userCredential;
+
+      if (isEmail) {
+        // Se for um email, fazer login diretamente
+        userCredential = await signInWithEmailAndPassword(auth, identifier, password);
+      } else {
+        // Se for um nickname, buscar o usuário no Firestore
+        // (Você precisa implementar a lógica para buscar o usuário pelo nickname no Firestore)
+        // Aqui está um exemplo básico usando o campo 'nickname':
+        const q = query(collection(db, 'users'), where('nickname', '==', identifier));
+        const querySnapshot = await getDocs(q);
+
+        if (!querySnapshot.empty) {
+          const user = querySnapshot.docs[0].data();
+
+          // Fazer login com email do usuário encontrado e senha fornecida
+          userCredential = await signInWithEmailAndPassword(auth, user.email, password);
+        } else {
+          throw new Error('Usuário não encontrado.');
+        }
+      }
+
       onLogin();
-      navigate('/teste')
+      navigate('/teste');
     } catch (error) {
       console.error('Erro no login:', error.message);
     }
@@ -39,17 +63,17 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
       </div>
       <form>
         <div>
-          <label>Email:</label>
-          <input type="email" value={email} onChange={handleEmailChange} />
+          <label>Email ou Usuário:</label>
+          <input type="text" value={identifier} onChange={handleIdentifierChange} />
         </div>
         <div>
-          <label>Senha:</label>
-          <input type="password" value={password} onChange={handlePasswordChange} />
+          <label>Digite sua Senha:</label>
+          <input id="input-login-senha" type="password" value={password} onChange={handlePasswordChange} />
         </div>
         <button type="button" onClick={handleLogin}>
           Entrar
         </button>
-        <a className="link-cadastro" href="/cadastro">Não possui cadastro ? Clique aqui e cadastra-se</a>
+        <a className="link-cadastro" href="/cadastro">Não possui cadastro? Clique aqui e cadastre-se</a>
       </form>
     </div>
   );
